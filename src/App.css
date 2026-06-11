@@ -1,0 +1,95 @@
+/* =========================================================
+   App.css — SafeStreet Professional Responsive Shell
+   Mobile = Full app
+   Desktop = Wide business dashboard
+   ========================================================= */
+
+.app-container {
+  min-height: 100dvh;
+  display: flex;
+  flex-direction: column;
+  width: 100%;
+  background: #F5F7FA;
+}
+
+.main-content {
+  flex: 1;
+  display: flex;
+  flex-direction: column;
+  width: 100%;
+  position: relative;
+}
+
+/* ===== MOBILE ===== */
+
+@media (max-width: 767px) {
+
+  .app-container {
+    background:
+      linear-gradient(
+        180deg,
+        #0B2342 0px,
+        #0B2342 170px,
+        #F5F7FA 170px
+      );
+  }
+
+  .main-content {
+    width: 100%;
+    margin: 0;
+    padding: 0;
+    border-radius: 28px 28px 0 0;
+    background: #F8FAFC;
+    box-shadow:
+      0 -8px 30px rgba(0,0,0,0.08);
+    overflow: hidden;
+  }
+}
+
+/* ===== TABLET ===== */
+
+@media (min-width:768px) and (max-width:1023px) {
+
+  .main-content {
+    max-width: 980px;
+    width: 100%;
+    margin: 0 auto;
+    background: #FAFCFF;
+    border-radius: 26px 26px 0 0;
+    overflow: hidden;
+    box-shadow:
+      0 20px 60px rgba(8,20,40,.10);
+  }
+}
+
+/* ===== DESKTOP ===== */
+
+@media (min-width:1024px) {
+
+  body {
+    background:
+      linear-gradient(
+        135deg,
+        #EEF3F9 0%,
+        #F8FAFC 45%,
+        #F2F5FA 100%
+      );
+  }
+
+  .app-container {
+    background: transparent;
+  }
+
+  .main-content {
+    width: 100%;
+    max-width: 1520px;
+    margin: 28px auto;
+    padding: 0;
+    border-radius: 26px;
+    background: #FCFDFF;
+    box-shadow:
+      0 30px 80px rgba(11,31,58,.12);
+    overflow: hidden;
+    border: 1px solid rgba(11,31,58,.06);
+  }
+}

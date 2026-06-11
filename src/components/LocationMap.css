@@ -1,0 +1,307 @@
+
+.location-map-wrapper {
+  display: flex;
+  flex-direction: column;
+  gap: 10px;
+}
+
+/* ── Search bar ── */
+.search-wrap {
+  position: relative;
+}
+
+.search-input-row {
+  display: flex;
+  align-items: center;
+  background: var(--white);
+  border: 1.5px solid var(--cream-border);
+  border-radius: var(--radius-md);
+  overflow: visible;
+  transition: border-color 0.15s;
+  position: relative;
+}
+
+.search-input-row:focus-within {
+  border-color: var(--terra);
+  box-shadow: 0 0 0 3px rgba(193,68,14,0.1);
+}
+
+.search-icon-wrap {
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  padding: 0 12px;
+  flex-shrink: 0;
+}
+
+.search-input {
+  flex: 1;
+  border: none;
+  outline: none;
+  background: transparent;
+  font-family: var(--font-body);
+  font-size: 0.92rem;
+  color: var(--ink);
+  padding: 13px 0;
+  min-width: 0;
+}
+
+.search-input::placeholder {
+  color: var(--ink-light);
+  font-size: 0.85rem;
+}
+
+.search-clear-btn {
+  background: none;
+  border: none;
+  cursor: pointer;
+  padding: 0 12px;
+  display: flex;
+  align-items: center;
+  opacity: 0.6;
+  transition: opacity 0.15s;
+}
+.search-clear-btn:hover { opacity: 1; }
+
+/* Suggestions dropdown */
+.suggestions-list {
+  position: absolute;
+  top: calc(100% + 4px);
+  left: 0;
+  right: 0;
+  background: var(--white);
+  border: 1.5px solid var(--cream-border);
+  border-radius: var(--radius-md);
+  box-shadow: var(--shadow-float);
+  z-index: 1000;
+  list-style: none;
+  overflow: hidden;
+  animation: fadeUp 0.15s ease;
+}
+
+.suggestion-item {
+  display: flex;
+  align-items: flex-start;
+  gap: 10px;
+  padding: 11px 14px;
+  cursor: pointer;
+  transition: background 0.1s;
+  border-bottom: 1px solid var(--cream-border);
+}
+
+.suggestion-item:last-child { border-bottom: none; }
+.suggestion-item:hover { background: var(--terra-pale); }
+
+.suggestion-text {
+  display: flex;
+  flex-direction: column;
+  gap: 2px;
+  min-width: 0;
+}
+
+.suggestion-main {
+  font-size: 0.88rem;
+  font-weight: 600;
+  color: var(--ink);
+  white-space: nowrap;
+  overflow: hidden;
+  text-overflow: ellipsis;
+}
+
+.suggestion-sub {
+  font-size: 0.76rem;
+  color: var(--ink-light);
+  white-space: nowrap;
+  overflow: hidden;
+  text-overflow: ellipsis;
+}
+
+.search-msg {
+  font-size: 0.8rem;
+  padding: 8px 12px;
+  border-radius: var(--radius-sm);
+  margin-top: 4px;
+  display: flex;
+  align-items: center;
+  gap: 6px;
+}
+.search-msg--warn  { background: var(--amber-pale); color: #854F0B; }
+.search-msg--error { background: var(--danger-pale); color: var(--danger); }
+
+/* ── GPS button row ── */
+.map-controls-row {
+  display: flex;
+  flex-direction: column;
+  gap: 6px;
+}
+
+.gps-btn {
+  display: inline-flex;
+  align-items: center;
+  gap: 8px;
+  align-self: flex-start;
+  background: var(--cream-dark);
+  border: 1.5px solid var(--cream-border);
+  border-radius: var(--radius-md);
+  padding: 10px 16px;
+  font-family: var(--font-body);
+  font-size: 0.88rem;
+  font-weight: 600;
+  color: var(--ink);
+  cursor: pointer;
+  transition: all 0.15s;
+  min-height: 44px;
+  -webkit-tap-highlight-color: transparent;
+}
+
+.gps-btn:hover:not(:disabled) {
+  background: var(--cream-border);
+  border-color: var(--terra);
+  color: var(--terra);
+}
+
+.gps-btn:disabled { opacity: 0.6; cursor: not-allowed; }
+
+.gps-msg {
+  display: flex;
+  align-items: flex-start;
+  gap: 6px;
+  font-size: 0.8rem;
+  padding: 8px 12px;
+  border-radius: var(--radius-sm);
+  line-height: 1.4;
+}
+.gps-msg--denied { background: var(--amber-pale);  color: #854F0B; }
+.gps-msg--error  { background: var(--danger-pale);  color: var(--danger); }
+
+/* ── Map container ── */
+.map-container-wrap {
+  position: relative;
+  height: 300px;
+  border-radius: var(--radius-lg);
+  overflow: hidden;
+  border: 1.5px solid var(--cream-border);
+}
+
+.map-hint {
+  position: absolute;
+  bottom: 12px;
+  left: 50%;
+  transform: translateX(-50%);
+  z-index: 500;
+  pointer-events: none;
+  animation: fadeIn 0.5s ease;
+}
+
+.map-hint-bubble {
+  display: flex;
+  align-items: center;
+  gap: 6px;
+  background: rgba(28,22,17,0.82);
+  color: white;
+  font-size: 0.82rem;
+  font-weight: 500;
+  padding: 8px 14px;
+  border-radius: 99px;
+  white-space: nowrap;
+  backdrop-filter: blur(4px);
+}
+
+/* ── Location info bar ── */
+.location-info {
+  display: flex;
+  align-items: center;
+  gap: 8px;
+  padding: 10px 14px;
+  border-radius: var(--radius-md);
+  border: 1.5px solid var(--cream-border);
+  background: var(--cream);
+  font-size: 0.85rem;
+  color: var(--ink-mid);
+  min-height: 44px;
+  transition: all 0.2s ease;
+}
+
+.location-info--set {
+  background: var(--forest-pale);
+  border-color: var(--forest-light);
+  color: var(--forest);
+}
+
+.location-clear-btn {
+  margin-left: auto;
+  background: none;
+  border: 1px solid var(--forest-light);
+  border-radius: 99px;
+  font-family: var(--font-body);
+  font-size: 0.75rem;
+  font-weight: 600;
+  color: var(--forest);
+  padding: 3px 10px;
+  cursor: pointer;
+  white-space: nowrap;
+  flex-shrink: 0;
+}
+.location-clear-btn:hover { background: var(--forest-pale); }
+
+/* ── Spinner ── */
+.spinner {
+  display: inline-block;
+  width: 15px;
+  height: 15px;
+  border: 2px solid var(--cream-border);
+  border-top-color: var(--terra);
+  border-radius: 50%;
+  animation: spin 0.7s linear infinite;
+  flex-shrink: 0;
+}
+
+/* ── Custom marker ── */
+.ss-marker {
+  position: relative;
+  display: inline-block;
+}
+.ss-marker-pin {
+  position: relative;
+  z-index: 2;
+  filter: drop-shadow(0 3px 6px rgba(0,0,0,0.3));
+}
+.ss-marker-pulse {
+  position: absolute;
+  bottom: 0;
+  left: 50%;
+  transform: translateX(-50%);
+  width: 16px;
+  height: 16px;
+  background: rgba(193,68,14,0.3);
+  border-radius: 50%;
+  animation: pulse-ring 1.8s ease-out infinite;
+  z-index: 1;
+}
+
+/* ── GPS Accuracy indicator ── */
+.gps-accuracy {
+  display: flex;
+  align-items: center;
+  gap: 5px;
+  font-size: 0.78rem;
+  font-weight: 600;
+  padding: 5px 10px;
+  border-radius: var(--radius-sm);
+  margin-top: 4px;
+}
+
+.accuracy-good {
+  background: var(--forest-pale);
+  color: var(--forest);
+}
+
+.accuracy-ok {
+  background: var(--amber-pale);
+  color: #854F0B;
+}
+
+.accuracy-poor {
+  background: var(--danger-pale);
+  color: var(--danger);
+}
