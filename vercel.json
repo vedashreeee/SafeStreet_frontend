@@ -1,0 +1,12 @@
+{
+  "rewrites": [
+    {
+      "source": "/nominatim/:match*",
+      "destination": "https://nominatim.openstreetmap.org/:match*"
+    },
+    {
+      "source": "/(.*)",
+      "destination": "/index.html"
+    }
+  ]
+}

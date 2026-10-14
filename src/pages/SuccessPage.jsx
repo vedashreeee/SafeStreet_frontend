@@ -15,7 +15,7 @@ export default function SuccessPage({ lang, data, onNewReport }) {
       try {
         if (!data?.location) return
         const res = await fetch(
-          `http://localhost:5000/api/location-count` +
+          `https://safestreet-backend-ruel.onrender.com/api/location-count` +
           `?lat=${data.location.lat}&lng=${data.location.lng}&hazard=${data.hazard}`
         )
         const result = await res.json()

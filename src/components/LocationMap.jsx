@@ -1085,16 +1085,16 @@ return (
             >
               <FixMapResize />
               <TileLayer
-  url="https://{s}.tile.openstreetmap.org/{z}/{x}/{y}.png"
-  maxZoom={19}
-  crossOrigin="anonymous"
-  keepBuffer={8}
-  updateWhenIdle={false}
-  tileSize={256}
-  zoomOffset={0}
-/>
+                url="https://{s}.tile.openstreetmap.org/{z}/{x}/{y}.png"
+                maxZoom={19}
+                crossOrigin="anonymous"
+                keepBuffer={8}
+                updateWhenIdle={false}
+                tileSize={256}
+                zoomOffset={0}
+              />
 
-              <MapClickHandler onLocationSet={handleMapClick} />
+              {/* 1. REMOVED <MapClickHandler /> so users cannot click the map to spoof a location */}
 
               {flyTarget && (
                 <FlyToPosition position={flyTarget} />
@@ -1102,17 +1102,10 @@ return (
 
              {value && (
               <Marker
-                draggable={true}
-                eventHandlers={{
-                  dragend: (e) => {
-                    const marker = e.target;
-                    const position = marker.getLatLng();
-                    // This updates the address and coords when the pin is dropped!
-                    handleMapClick({ lat: position.lat, lng: position.lng });
-                  }
-                }}
+                draggable={false} /* 2. CHANGED to false so the pin is locked in place */
                 position={[value.lat, value.lng]}
                 icon={safestreetIcon}
+                /* 3. REMOVED the eventHandlers block entirely */
               />
             )}
             </MapContainer>
